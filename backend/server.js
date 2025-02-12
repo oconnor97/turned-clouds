@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 
+import showRoutes from './routes/show.route.js';
+
 // Allows you to access your env file
 dotenv.config();
 
