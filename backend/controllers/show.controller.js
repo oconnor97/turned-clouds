@@ -1,7 +1,7 @@
 import Show from "../models/show.model.js";
 import mongoose from "mongoose";
 
-//getShow function
+//get all shows function
 export const getShows = async (req, res) => {
     try {
         const shows = await Show.find({});
@@ -32,3 +32,20 @@ export const createShow = async (req, res) => {
     res.status(500).json({ sucess: false, message: "Server Error" }); //use 500 because it is an internal issue
   }
 };
+//update show function
+export const updateShow = async (req, res) => {
+    const { id } = req.params;
+
+    const show = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ success: false, message: 'Invalid Show ID' });
+    }
+
+    try {
+       const updatedShow = await Show.findByIdAndUpdate(id, show,{new:true});
+       res.status(200).json({ success:true, data: updatedShow});
+    } catch (error) {
+        res.status(500).json({ success: false, message: "server Error"});
+    }
+}

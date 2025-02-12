@@ -2,7 +2,7 @@
 
 import express from 'express';
 
-import { createShow, getShows } from '../controllers/show.controller.js';
+import { createShow, getShows, updateShow } from '../controllers/show.controller.js';
 
 const router = express.Router();
 
@@ -10,6 +10,7 @@ const router = express.Router();
 // Use the get method to the root route
 router.get("/", getShows)
 router.post("/", createShow);
+router.put("/:id", updateShow);
 
 
 export default router;
