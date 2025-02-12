@@ -2,7 +2,7 @@
 
 import express from 'express';
 
-import { createShow, getShows, updateShow } from '../controllers/show.controller.js';
+import { createShow, getShows, updateShow, deleteShow } from '../controllers/show.controller.js';
 
 const router = express.Router();
 
@@ -11,6 +11,7 @@ const router = express.Router();
 router.get("/", getShows)
 router.post("/", createShow);
 router.put("/:id", updateShow);
+router.delete("/:id", deleteShow);
 
 
 export default router;

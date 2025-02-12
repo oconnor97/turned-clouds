@@ -43,9 +43,27 @@ export const updateShow = async (req, res) => {
     }
 
     try {
+        //when you pass {new:true} to findByIdAndUpdate it will return the new changed object, defaults to false and returns the object as it was before the change
        const updatedShow = await Show.findByIdAndUpdate(id, show,{new:true});
        res.status(200).json({ success:true, data: updatedShow});
     } catch (error) {
         res.status(500).json({ success: false, message: "server Error"});
     }
+}
+
+//delete show function
+export const deleteShow = async (req, res) => {
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ success: false, message: 'Invalid Show ID' });
+    }
+    
+   try {
+    await Show.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: 'Show deleted successfully'})
+   }
+   catch (error) {
+    res.status(500).json({success: false, message: "Server Error"})
+   }
 }
