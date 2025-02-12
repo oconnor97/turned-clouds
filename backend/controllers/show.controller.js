@@ -1,6 +1,18 @@
 import Show from "../models/show.model.js";
 import mongoose from "mongoose";
 
+//getShow function
+export const getShows = async (req, res) => {
+    try {
+        const shows = await Show.find({});
+        res.status(200).json({ success: true, data: shows});
+    } catch (error) {
+        console.log('Error in fetching Shows');
+        res.status(500).json({ success: true, message: "Server error"})
+        
+    }
+}
+
 //create Show function
 export const createShow = async (req, res) => {
   const show = req.body; //the user will send this data

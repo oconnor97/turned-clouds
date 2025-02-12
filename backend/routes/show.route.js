@@ -2,12 +2,13 @@
 
 import express from 'express';
 
-import { createShow } from '../controllers/show.controller.js';
+import { createShow, getShows } from '../controllers/show.controller.js';
 
 const router = express.Router();
 
 
 // Use the get method to the root route
+router.get("/", getShows)
 router.post("/", createShow);
 
 
